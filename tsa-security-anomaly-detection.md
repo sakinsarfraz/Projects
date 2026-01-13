@@ -126,6 +126,6 @@ Full analysis code available in `analysis.Rmd`. All visualizations and findings 
 
 ---
 
-**Author:** Sakina [Last Name]  
-**Contact:** [LinkedIn] | [Email]  
+**Author:** Sakina Sarfraz 
+**Contact:** sarfraz1@sas.upenn.edu  
 **Institution:** University of Pennsylvania, BASc Mathematics & Data Analytics
