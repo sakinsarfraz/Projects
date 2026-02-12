@@ -3,6 +3,23 @@
 ## Project Overview
 Analysis of 2.7 million TSA checkpoint records from 2022 to identify security anomalies, assess airport-level risk patterns, and detect temporal threat indicators. This project demonstrates data analytics skills applicable to security operations and threat intelligence.
 
+
+This analysis was completed as a final exam project for DATA 2100 (Introduction 
+to Data Analytics) at the University of Pennsylvania. The project has been 
+reframed with a security analytics lens to demonstrate skills applicable to 
+threat detection and security operations.
+
+**Original Assignment:** Analyze TSA checkpoint and firearm confiscation data 
+to identify patterns and insights.
+
+**Security-Focused Reframe:** Positioned findings through security lens - 
+risk assessment, threat patterns, temporal analysis - core skills for 
+Security Operations Center (SOC) analysts.
+
+**Note:** This represents foundational analytical work. Current research focus 
+is on platform safety intelligence and high-severity threat patterns 
+(see: [link to Snapchat project once live]).
+
 ## Dataset
 - **Source:** Transportation Security Administration (TSA) checkpoint data (2022)
 - **Scale:** 2,708,662 records across 365 days
