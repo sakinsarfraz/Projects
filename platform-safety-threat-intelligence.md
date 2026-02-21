@@ -1,7 +1,7 @@
 # Platform Safety Intelligence: Geographic Threat Pattern Analysis
 
 ## Project Overview
-Analysis of Snapchat's H1 2024 Transparency Report examining platform safety enforcement patterns across 200+ countries. This project demonstrates threat intelligence analysis skills including geographic threat distribution, category-based risk assessment, content moderation effectiveness metrics, and repeat offender detection.
+This project analyzes high-severity content enforcement patterns across Gulf Cooperation Council (GCC) countries using data from the Snap Inc. H1 2024 Transparency Report. It demonstrates threat intelligence analysis skills including geographic threat distribution, category-based risk assessment, content moderation effectiveness metrics, and repeat offender detection.
 
 ## Why This Is Security Work
 
@@ -12,7 +12,24 @@ Analysis of Snapchat's H1 2024 Transparency Report examining platform safety enf
 - Response time metrics = Incident response performance
 - Enforcement effectiveness = Security control effectiveness
 
-Major tech companies employ entire Trust & Safety teams (security professionals) to handle exactly this type of analysis. These teams work alongside traditional cybersecurity teams to protect users and platforms.
+Major tech companies employ entire Trust & Safety teams (security professionals) to handle exactly this type of analysis. This project demonstrates applied Trust & Safety intelligence analysis, equivalent to blue-team security operations in a platform environment. These teams work to protect users and platforms. 
+
+## Focus and Objectives On Criminal-level Violation Categories 
+These categories are:
+- Child Sexual Exploitation (CSE)
+- Weapons
+- Drugs
+- Self-Harm & Suicide
+- Sexual Content
+
+We evaluate:
+- Geographic threat distribution
+- Enforcement concentration vs. scale effects
+- Repeat offender patterns
+- Category-specific risk profiles
+- Response time consistency
+
+
 
 ## Dataset
 - **Source:** Snapchat Transparency Report (H1 2024)
