@@ -330,6 +330,7 @@ high-severity platform violations manifest in this specific geographic and
 cultural context.
 
 **Why high-severity categories?**
+High-severity categories, some of which I chose may involve criminal conduct depending on jurisdiction.
 Child exploitation, weapons trafficking, drug distribution, and terrorism 
 represent the most serious threats on digital platforms. Unlike policy 
 violations, these categories:
@@ -427,7 +428,7 @@ Sexual Content	          | 259713 (75%) | 21450 (73%)
 Weapons	                  | 4214	(1.22%)| 497	(1.70%)
 
 **Interpretation:**
-Similar patterns suggest regional norms; differences suggest market-specific factors. Raw enforcement totals in Saudi Arabia are approximately 12 times higher than in the UAE across most violation categories, reflecting overall scale differences in enforcement volume. Overall, violation distribution patterns between Saudi Arabia and the UAE are structurally similar, suggesting comparable enforcement category composition rather than disproportionate concentration in any single category.
+Similar patterns suggest regional norms; differences suggest market-specific factors. Raw enforcement totals in Saudi Arabia are approximately a magnitude higher than in the UAE across most violation categories, reflecting overall scale differences in enforcement volume. Overall, violation distribution patterns between Saudi Arabia and the UAE are structurally similar, suggesting comparable enforcement category composition rather than disproportionate concentration in any single category.
 
 
 #### 4. Platform Response Effectiveness
@@ -445,10 +446,33 @@ Average response times:
 **Interpretation:**
 The response times are similar across all GCC countries with the average response time ranging from 11-18 minutes on average showing consistency across the region.
 
-This suggests equitable resource allocation across the region.
-
 
 ---
+
+## Visualizations
+
+### GCC Total Enforcements
+![GCC Total Enforcements](visualizations/gcc_total_enforcements.png)
+
+### GCC Violation Rate
+![GCC Violation Rate](visualizations/gcc_violation_rate.png)
+
+### Saudi Category Breakdown
+![Saudi Category Breakdown](visualizations/saudi_category_breakdown.png)
+
+### Saudi Repeat Offender Rate
+![Saudi Repeat Offender Rate](visualizations/saudi_repeat_offender_rate.png)
+
+### Saudi vs UAE Comparison
+![Saudi vs UAE Comparison](visualizations/saudi_uae_comparison.png)
+
+### GCC Response Times
+![GCC Response Times](visualizations/gcc_response_times.png)
+
+
+
+
+
 
 
 
