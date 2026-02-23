@@ -1,7 +1,7 @@
 # TSA Screening Risk Analysis & Incident Rate Assessment
 
 ## Project Overview
-Analysis of 2.7 million TSA checkpoint records from 2022 to identify security anomalies, assess airport-level risk patterns, and detect temporal threat indicators. This project demonstrates data analytics skills applicable to security operations and threat intelligence.
+Analysis of 2.7 million TSA checkpoint records from 2022 to assess airport-level risk patterns, incident rates, and temporal exposure trends. This project demonstrates data analytics skills applicable to security operations and threat intelligence.
 
 
 This analysis was completed as a final exam project for DATA 2100 (Introduction 
@@ -50,10 +50,10 @@ Orlando International (MCO) shows a confiscation rate of 7.3 per 100K travelers 
 
 **Findings:**
 - Newark (EWR): Highest average passenger throughput at at 16:00 (4 PM)
-- JFK: Highest risk at 17:00 (5 PM)  
-- LaGuardia (LGA): Highest risk at 09:00 (9 AM)
+- JFK: Highest average passenger throughput at 17:00 (5 PM)  
+- LaGuardia (LGA): Highest average passenger throughput at 09:00 (9 AM)
 
-**Security Implication:** Resource allocation and screening intensity should prioritize these time windows.
+**Security Implication:** These high-volume windows represent periods of increased exposure and may warrant proportional security staffing.
 
 ### 3. Checkpoint-Level Risk Assessment
 **Question:** How is threat exposure distributed across airport terminals?
