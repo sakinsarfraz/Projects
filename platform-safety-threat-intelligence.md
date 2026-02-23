@@ -3,6 +3,8 @@
 ## Project Overview
 This project analyzes high-severity content enforcement patterns across Gulf Cooperation Council (GCC) countries using data from the Snap Inc. H1 2024 Transparency Report. It demonstrates threat intelligence analysis skills including geographic threat distribution, category-based risk assessment, content moderation effectiveness metrics, and repeat offender detection.
 
+## Academic Origin: Portions of the exploratory data analysis were originally developed for DATA 2100 (Introduction to Data Analytics) at the University of Pennsylvania and later expanded with a security analytics framework.
+
 ## Why This Is Security Work
 
 **Content moderation IS security operations:**
