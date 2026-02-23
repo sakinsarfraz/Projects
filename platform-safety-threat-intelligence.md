@@ -363,10 +363,10 @@ Threat Intelligence analyst, and SOC analyst roles requiring:
 
 ## Finding: 
 
-### GCC High-Severity Threat Analysis
+### 1. GCC High-Severity Threat Analysis
 
 **Observation:**
-Saudi Arabia has the highest total enforcement volume by far (343k) but not the highest rate.
+Saudi Arabia has the highest total enforcement volume by far (343k) but not the highest rate. On the other hand, Kuwait has the highest repeated offender rate with approximately 1.93 enforcements per account
 
 **Key Metric - Repeat Offender Rate:**
 - Saudi Arabia: 1.67 enforcements per account
@@ -435,36 +435,15 @@ Similar patterns suggest regional norms; differences suggest market-specific fac
 
 **Finding:**
 Average response times:
-- [Country]: [X] minutes
-- [Country]: [Y] minutes
-- GCC average: [Z] minutes
+- Bahrain: 11.4 minutes
+- Qatar: 11.7 minutes
+- Oman: 11.7 minutes
+- United Arab Emirates: 14.7 minutes
+- Saudi Arabia: 15.2 minutes
+- Kuwait: 17.7 minutes
 
 **Interpretation:**
-[Are response times similar across countries? Or does Saudi get faster/slower service?]
-
-#### 5. Threat Concentration Patterns
-**Analysis:** Identified repeat offender patterns (high enforcements per account).
-
-**Finding:**
-Categories with highest repeat offender rates in Saudi Arabia:
-[Top 3 categories with high enforcements-per-account ratios]
-
-**Security Implication:**
-High ratios suggest concentrated threats from persistent bad actors rather than 
-distributed violations across many users. These accounts warrant enhanced monitoring 
-or immediate removal.
-
-
-### 6. Platform Response Consistency
-
-**Finding:**
-Average response times range from 11-18 minutes across all GCC countries, 
-with no significant outliers.
-
-**Interpretation:**
-Snapchat maintains consistent enforcement prioritization regardless of market 
-size. Saudi Arabia (15.3 min) receives similar response times to smaller 
-markets like Bahrain (11.4 min) and Qatar (11.7 min).
+The response times are similar across all GCC countries with the average response time ranging from 11-18 minutes on average showing consistency across the region.
 
 This suggests equitable resource allocation across the region.
 
@@ -490,8 +469,6 @@ This suggests equitable resource allocation across the region.
 # Key Finding 5: Response times consistent across GCC (11-18 min)
 # Conclusion: Platform treats region equitably
 
-**Author:** Sakina [Last Name]  
-**Contact:** [LinkedIn] | [Email]  
-**Institution:** University of Pennsylvania, BASc Mathematics & Data Analytics
+**Author:** Sakina Sarfraz   
 
 
