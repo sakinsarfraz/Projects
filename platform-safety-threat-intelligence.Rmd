@@ -1,0 +1,716 @@
+---
+title: 'Platform Safety Threat Intelligence'
+author: "SAKINA SARFRAZ"
+date: "November 9, 2025"
+output:
+  html_document:
+    toc: true
+    theme: united
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+library(tidyverse) 
+library(dplyr)
+library(stringr)
+library(maps)
+library(lubridate)
+library(dslabs)
+library(tidyr)
+
+```
+
+
+## Question #A Snapchat Transparency Report (5 points)
+
+## Question #1
+
+1. Read in the data. What is the class of the value column? If it is not a numeric variable, make it a
+numeric variable.
+
+
+```{R}
+
+snapchat <- read.csv("Snap_Transparency_Report_H1-2024.csv")
+
+class(snapchat$value)
+
+snapchat$value <- as.numeric(snapchat$value)
+
+
+
+```
+The class of the value column was character so we changed that into a numeric variable.
+
+
+## Question #2
+
+2. Is the data from Snapchat long data or wide data? Explain how you arrived at your answer.
+
+```{R}
+
+nrow(snapchat)
+ncol(snapchat)
+
+
+```
+
+The data from Snapchat is long data. I arrived at this answer after using nrow and ncol to see the number of rows and columns in this data set. There are 22988 rows and 7 columns. There is clearly more rows than columns in this data set which is what makes it long. 
+
+The dataset is long format because multiple metrics (total_enforcements, total_unique_accounts_enforced, median_turnaround_time_minutes) are stored in a single column (metric) with corresponding values in value, rather than each metric having its own column.
+
+## Question #3
+
+3. Subset the data so it only includes metrics related to the overview of Snapchat’s enforcement of their
+Terms & Service in specific countries around the world.
+
+```{R} 
+
+unique(snapchat$section)
+
+
+tands <- snapchat[snapchat$section == "Overview of Our T&S Enforcements" & 
+                    snapchat$category == "Country", ]
+
+head(tands)
+
+
+``` 
+
+
+
+## Question #4
+
+4. To make the data easier to work with, subset the data to remove all of the columns that are the same
+across all of our observations. Recode the variable with the names of countries to “country”.
+  
+  
+```{R} 
+
+unique(tands$section)
+unique(tands$category)
+unique(tands$period)
+
+#I hashed them because the list is very long which means that these columns arent the same across the observations
+#unique(tands$sub_category_1)
+#unique(tands$sub_category_2)
+#unique(tands$metric)
+#unique(tands$value)
+
+
+
+tands$section <- NULL
+tands$category <- NULL
+tands$period <- NULL
+
+
+
+
+
+``` 
+
+
+
+
+## Question #5
+
+5. Reorganize (or pivot) the data so that each observation in your dataframe is a country-sub category
+pairing (United States-Weapons, United States-Bullying and Harassment, etc.). In your newly created
+dataframe, each country and sub category pairing should be a single row that contains all of the data
+for that pairing.
+
+```{R}
+
+#TA recommended I don't combine the country-sub like United States - Weapon in one column and instead keep them in separate columns to make it neater. so         country:         Sub: 
+
+
+names(tands)[names(tands) == "sub_category_1"] <- "country"
+
+names(tands)[names(tands) == "sub_category_2"] <- "type"
+
+
+
+tands <- spread(tands,
+                key = metric,
+                value = value)
+
+
+names(tands)
+
+head(tands)
+
+#paste0()
+
+```
+
+
+
+## Question #6
+
+6. What percentage of the worldwide enforcements were taken against content from the United States?
+
+```{R}
+
+#unique(tands$country[grepl("United", tands$country)])
+
+total_worldwide <- sum(tands$total_enforcements, na.rm = TRUE)
+us_total <- sum(tands$total_enforcements[tands$country == "United States"], na.rm = TRUE)
+us_percent <- (us_total / total_worldwide) * 100
+us_percent
+
+
+
+
+``` 
+
+
+
+
+## Question #7
+
+7. How many total enforcement actions did Snapchat take worldwide related to content that featured
+weapons?
+
+```{R}
+
+
+weapons_rows <- tands[tands$type == "Weapons", ]
+total_weapons <- sum(weapons_rows$total_enforcements, na.rm = TRUE)
+total_weapons
+
+
+
+```
+
+
+
+```{r, echo=F}
+
+```
+
+## Question #8
+
+8. Create a new variable that calculates the number of enforcements per unique account impacted. Which
+country and category have the highest number of enforcements per account?
+
+```{R}
+
+tands$enforcements_per_account <- 
+  tands$total_enforcements / tands$total_unique_accounts_enforced
+
+max_row <- tands[which.max(tands$enforcements_per_account), ]
+
+max_row
+
+
+
+```
+
+
+
+
+## Question #9
+
+9. The 27 counties in the European Union (EU) are interested in studying the relationship between the
+new metric you’ve created and the time it takes Snapchat to respond to posts featuring weapons. Create
+a single visualization that shows the relationship between your new metric and median enforcement
+time within each EU country.
+
+```{R}
+
+eu_countries <- c("Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", 
+  "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", 
+  "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", 
+  "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden")
+
+eu_weapons <- tands[tands$country %in% eu_countries & tands$type == "Weapons", ]
+
+
+ggplot(eu_weapons, aes(x = median_turnaround_time_minutes, y = enforcements_per_account,
+  label = country)) +
+  geom_point(size = 1) +
+  geom_text(vjust = -0.5, size = 2) +
+  coord_flip() +
+  labs(title = "EU: Enforcements per Account vs Median Turnaround Time (Weapons)",
+    x = "Median Turnaround Time (minutes)",
+    y = "Enforcements per Account") +
+  theme_minimal()
+
+
+
+```
+
+
+## Personal Deep Dive
+
+## 1. 
+
+1. Scanning the overview of categories
+
+```{R}
+
+#Seeing the different unique violation categories:
+#unique(tands$type)
+
+#Counting the amount of times the categories appear and their frequency
+
+
+sort(table(tands$type), decreasing = TRUE)
+
+
+
+```
+
+## 2. 
+
+2. Narrowing down the categories and focusing on GCC countries
+
+```{R}
+
+#Defining the categories:
+
+narrowed_categories <- c("Child Sexual Exploitation", "Weapons", "Drugs", "Terrorism", "Threats and Violence", "Self-Harm & Suicide", "Sexual Content")
+
+#GCC Countries 
+
+gcc <- c("Saudi Arabia", "United Arab Emirates", "Qatar", "Bahrain", "Kuwait", "Oman")
+
+gcc_filtered <- tands %>%
+  filter(country %in% gcc, type %in% narrowed_categories)
+
+names(gcc_filtered)
+
+
+```
+The categories were narrowed down to the ones which could possibly subject to harder legal implications due to their severity such as "Self-Harm and Suicide"
+
+After narrowing down the categories, I chose to analyze the GCC countries because of personal geographical proximity, population cultural knowledge, and wanting to understand the extent of how sensitive content is handled in the GCC. For example, the GCC is known for going by Sharia law and teachings. This elicits questions such as "Do the laws and cultural values of the place have implications to the risk profile of the country?" etc.
+
+## 3. 
+
+3. Now seeing the risk profile per country and key metrics to understand the data
+
+```{R}
+
+# ANALYSIS 1: Risk Profile by Country 
+
+#Intensity profile
+gcc_intensity_profile <- gcc_filtered %>%
+  group_by(country) %>%
+  summarise(
+    total_enforcements = sum(total_enforcements, na.rm = TRUE),
+    total_accounts_enforced = sum(total_unique_accounts_enforced, na.rm = TRUE),
+    enforcement_intensity =
+      total_enforcements / total_accounts_enforced
+  ) %>%
+  mutate(
+    mean_intensity = mean(enforcement_intensity),
+    sd_intensity = sd(enforcement_intensity),
+    z_score = (enforcement_intensity - mean_intensity) / sd_intensity,
+    percent_above_mean =
+      ((enforcement_intensity - mean_intensity) / mean_intensity) * 100
+  ) %>%
+  arrange(desc(z_score))
+
+print(gcc_intensity_profile)
+
+
+
+#Risk profile
+
+gcc_risk_profile <- gcc_filtered %>%
+  group_by(country) %>%
+  summarise(
+    total_enforcements = sum(total_enforcements, na.rm = TRUE),
+    categories_affected = n_distinct(type),
+    avg_response_time = mean(median_turnaround_time_minutes, na.rm = TRUE),
+    repeat_offender_rate = sum(total_enforcements, na.rm = TRUE) /
+      sum(total_unique_accounts_enforced, na.rm = TRUE)
+  ) %>%
+  arrange(desc(total_enforcements))
+
+
+print(gcc_risk_profile)
+
+
+
+```
+
+On average, for every 1 flagged account, There are ~1.74 enforcement actions.This is the regional behavioral baseline.
+
+Saudi Arabia has the most total enforcements regarding the policy violation categories. Before reaching conclusions, we have to ask ourselves, could this be due to culture? Population numbers? Enforcement rates? 
+
+When analyzing the data further, we notice that Kuwait scored the highest for the repeated offender rate, not Saudi Arabia. Why so?
+
+Kuwait: Kuwait shows the highest concentration of repeat enforcement per account. It is almost 2 standard deviations above the mean. Among accounts that violate, repeat violations are more common in Kuwait compared to the GCC average. 
+
+Bahrain: Very close to baseline.
+
+Saudi Arabia: Saudi Arabia has the highest total enforcement volume by far (343k), reflecting the largest user base / activity scale. Despite massive total volume, repeat enforcement concentration is slightly below average. Therefore, high total volume ≠ concentrated repeat behavior.
+
+UAE: Slightly below average. Mild negative deviation.
+
+Oman: Not extreme, just lower concentration.
+
+
+Oman, Saudi Arabia, UAE, and Qatar all have enforcement intensity below the mean.They have large totals (Saudi, UAE) or moderate totals (Oman, Qatar), but less concentrated repeat enforcement. Saudi Arabia exhibits the highest absolute enforcement volume (343,893), driven by its large user base. However, enforcement intensity (enforcements per unique account) is below the GCC average (1.675 vs 1.741, z = -0.62), suggesting the high total is scale-driven rather than concentrated repeat behavior.
+In contrast, Kuwait has the highest enforcement intensity (1.937, z = +1.86, +11% above mean), indicating more concentrated repeat violations among flagged accounts. Other GCC countries (Bahrain, Qatar, UAE, Oman) are close to or below the regional average, suggesting moderate or low repeat enforcement intensity relative to their totals.
+
+
+The average Response Time ranges 11–18 minutes.Saudi Arabia, UAE, Kuwait are on the higher end (14–18 min), which may reflect larger enforcement volume rather than slower handling. Smaller countries (Bahrain, Qatar, Oman) have faster response times, likely due to smaller volume of flagged content. Average platform response times range from 11–18 minutes, with larger-volume countries taking slightly longer, consistent with expected operational load. Overall, enforcement practices appear proportional to user activity, with repeat enforcement intensity highlighting countries with concentrated repeat behavior.
+
+
+Highest total BUT lowest rate → Volume/population effect
+Highest total BUT similar rate to others → Just more users
+Highest total AND highest rate → Actual pattern difference
+
+
+
+
+## 4. 
+
+4. Narrowing down to Saudi statistics only: 
+```{R}
+
+# ANALYSIS 2: Saudi Arabia Category Breakdown 
+saudi_breakdown <- gcc_filtered %>%  
+  filter(country == "Saudi Arabia") %>%
+  group_by(type) %>%
+  summarise(
+    total_enforcements = sum(total_enforcements, na.rm = TRUE),  
+    unique_accounts = sum(total_unique_accounts_enforced, na.rm = TRUE),
+    rate_per_account = total_enforcements / unique_accounts
+  ) %>%
+  arrange(desc(total_enforcements))
+
+print(saudi_breakdown)
+
+
+
+# Full GCC Breakdown
+gcc_filtered %>%
+  group_by(country, type) %>%
+  summarise(total = sum(total_enforcements, na.rm = TRUE)) %>%
+  pivot_wider(names_from = type, values_from = total, values_fill = 0)
+
+
+
+
+```
+
+Since our focus came to Saudi Arabia, we scanned the metrics for each category. Are all categories driving the total enforcements? Or just specific ones? Are certain categories disproportionately high?
+
+Sexual Content accounts for approximately 75% (259, 713 of 343,893) of Saudi Arabia’s high-severity enforcement volume, indicating that overall totals are structurally driven by this single category rather than evenly distributed across violation types.
+
+Child Sexual Exploitation (CSE) is significant but not the primary driver.
+
+Weapons violations exhibit the highest enforcement intensity (1.89 per account), suggesting greater repeat persistence among flagged accounts despite low overall volume.
+
+Weapons violations show the highest repeat offender rate (1.89), suggesting a concentrated group of persistent violators. On the other hand, Child Sexual Exploitation (CSE) shows a lower rate (1.36), indicating more distributed violations across different accounts. This distinction informs enforcement strategy: weapons require targeted account removal, while CSE requires broader detection improvements.
+
+## 5 
+
+5. Comparing Saudi Stats vs. UAE
+```{R}
+
+# ANALYSIS 3: Saudi vs UAE Comparison 
+saudi_uae_comparison <- gcc_filtered %>%  
+  filter(country %in% c("Saudi Arabia", "United Arab Emirates")) %>%
+  group_by(type, country) %>%       
+  summarise(
+    enforcements = sum(total_enforcements, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  pivot_wider(
+    names_from = country,
+    values_from = enforcements,
+    values_fill = 0
+  )
+
+print(saudi_uae_comparison)
+
+#Composition comparison
+saudi_uae_percent <- gcc_filtered %>%
+  filter(country %in% c("Saudi Arabia", "United Arab Emirates")) %>%
+  group_by(type, country) %>%
+  summarise(
+    total = sum(total_enforcements, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  group_by(country) %>%
+  mutate(percent_of_total = total / sum(total) * 100) %>%
+  ungroup() %>%
+  select(type, country, percent_of_total) %>%
+  pivot_wider(
+    names_from = country,
+    values_from = percent_of_total,
+    values_fill = 0
+  )
+
+print(saudi_uae_percent)
+
+
+```
+
+Are patterns similar or very different?
+Which categories show biggest differences?
+
+Raw enforcement totals in Saudi Arabia are approximately a magnitude higher than in the UAE across most violation categories, reflecting overall scale differences in enforcement volume.
+
+When normalized as a percentage of each country’s total enforcement:
+
+Sexual Content (~75% Saudi, ~73% UAE) shows nearly identical distribution.
+
+CSE proportions are also similar (~21–22%).
+
+Drugs and Weapons represent slightly higher proportional shares in the UAE.
+
+Self-Harm violations represent a slightly higher proportional share in Saudi Arabia, though absolute numbers remain low.
+
+Overall, violation distribution patterns between Saudi Arabia and the UAE are structurally similar, suggesting comparable enforcement category composition rather than disproportionate concentration in any single category.
+
+## 6
+
+6. Response time to violations by Country
+```{R}
+
+# ANALYSIS 4: Response Time by Country 
+gcc_response_times <- gcc_filtered %>%  
+  group_by(country) %>%
+  summarise(
+    avg_response_time = mean(median_turnaround_time_minutes, na.rm = TRUE),
+    median_response_time = median(median_turnaround_time_minutes, na.rm = TRUE)
+  ) %>%
+  arrange(avg_response_time)
+
+print(gcc_response_times)
+
+
+
+gcc_filtered %>%
+  filter(country == "Saudi Arabia") %>%
+  arrange(desc(enforcements_per_account)) %>%
+  head(10)
+
+```
+
+Response times across GCC countries range from 11–18 minutes on average, indicating relatively consistent operational handling at the regional level. No country exhibits extreme deviation in processing latency.
+
+Within Saudi Arabia, response times vary significantly by violation type. High-volume categories such as Sexual Content (2.73 min) and Weapons (6.6 min) are processed rapidly, whereas CSE (27.55 min) and Self-Harm (23.88 min) take substantially longer. This suggests differentiated triage workflows, likely reflecting investigative complexity rather than enforcement bias.
+
+
+
+
+
+## 7
+
+7. Visualizations 
+
+```{R}
+
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(scales)
+
+# OUTPUT DIRECTORY 
+if (!dir.exists("visualizations")) {
+  dir.create("visualizations")
+}
+
+# VISUALIZATION 1: GCC Total Enforcements
+viz_data <- gcc_risk_profile %>%
+  select(country, total_enforcements, repeat_offender_rate)
+
+p1 <- ggplot(viz_data, aes(x = reorder(country, total_enforcements), 
+                            y = total_enforcements)) +
+  geom_col(fill = "#2C3E50", alpha = 0.8) +
+  geom_text(aes(label = comma(total_enforcements)), 
+            hjust = -0.1, size = 3.5, color = "#2C3E50") +
+  coord_flip() +
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.15))) +
+  labs(title = "High-Severity Enforcements by GCC Country",
+       subtitle = "Total enforcement actions (H1 2024)",
+       x = NULL, y = "Total Enforcements") +
+  theme_minimal(base_size = 12) +
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.subtitle = element_text(color = "#7F8C8D", size = 10),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_text(face = "bold"))
+
+ggsave("visualizations/gcc_total_enforcements.png", plot = p1, 
+       width = 10, height = 6, dpi = 300)
+
+# VISUALIZATION 2: Violation Rate 
+p2 <- ggplot(viz_data, aes(x = reorder(country, repeat_offender_rate), 
+                            y = repeat_offender_rate)) +
+  geom_col(fill = "#E74C3C", alpha = 0.8) +
+  geom_text(aes(label = sprintf("%.2f", repeat_offender_rate)), 
+            hjust = -0.1, size = 3.5, color = "#E74C3C") +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(title = "Violation Rate Per Account",
+       subtitle = "Enforcements per unique account (lower = better)",
+       x = NULL, y = "Enforcements Per Account") +
+  theme_minimal(base_size = 12) +
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.subtitle = element_text(color = "#7F8C8D", size = 10),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_text(face = "bold"))
+
+ggsave("visualizations/gcc_violation_rate.png", plot = p2, 
+       width = 10, height = 6, dpi = 300)
+
+# VISUALIZATION 3: Saudi Category Breakdown 
+saudi_viz <- saudi_breakdown %>%
+  mutate(type = factor(type, levels = type[order(total_enforcements)]),
+         percentage = (total_enforcements / sum(total_enforcements)) * 100)
+
+p3 <- ggplot(saudi_viz, aes(x = type, y = total_enforcements, fill = type)) +
+  geom_col(alpha = 0.9, show.legend = FALSE) +
+  geom_text(aes(label = paste0(comma(total_enforcements), "\n(", 
+                                sprintf("%.1f", percentage), "%)")), 
+            hjust = -0.1, size = 3.5) +
+  coord_flip() +
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.2))) +
+  scale_fill_manual(values = c("Sexual Content" = "#E74C3C",
+                                "Child Sexual Exploitation" = "#C0392B",
+                                "Drugs" = "#F39C12",
+                                "Weapons" = "#E67E22",
+                                "Self-Harm & Suicide" = "#95A5A6")) +
+  labs(title = "Saudi Arabia: High-Severity Violations by Category",
+       subtitle = "Total enforcements and percentage of country total (H1 2024)",
+       x = NULL, y = "Total Enforcements") +
+  theme_minimal(base_size = 12) +
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.subtitle = element_text(color = "#7F8C8D", size = 10),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_text(face = "bold", size = 11))
+
+ggsave("visualizations/saudi_category_breakdown.png", plot = p3, 
+       width = 10, height = 6, dpi = 300)
+
+# VISUALIZATION 4: Repeat Offender Rate 
+repeat_viz <- saudi_breakdown %>%
+  mutate(type = factor(type, levels = type[order(rate_per_account)]))
+
+p4 <- ggplot(repeat_viz, aes(x = type, y = rate_per_account, fill = type)) +
+  geom_col(alpha = 0.9, show.legend = FALSE) +
+  geom_text(aes(label = sprintf("%.2f", rate_per_account)), 
+            hjust = -0.1, size = 4) +
+  geom_hline(yintercept = 1.0, linetype = "dashed", color = "#7F8C8D", linewidth = 0.5) +
+  annotate("text", x = 5, y = 1.05, label = "1.0 = baseline", 
+           color = "#7F8C8D", size = 3) +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  scale_fill_manual(values = c("Weapons" = "#E74C3C",
+                                "Sexual Content" = "#E67E22",
+                                "Drugs" = "#F39C12",
+                                "Child Sexual Exploitation" = "#3498DB",
+                                "Self-Harm & Suicide" = "#95A5A6")) +
+  labs(title = "Repeat Offender Patterns by Violation Type (Saudi Arabia)",
+       subtitle = "Enforcements per unique account - higher = more repeat violations",
+       x = NULL, y = "Enforcements Per Account",
+       caption = "Weapons violations show highest concentration (1.89), suggesting persistent bad actors") +
+  theme_minimal(base_size = 12) +
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.subtitle = element_text(color = "#7F8C8D", size = 10),
+        plot.caption = element_text(color = "#7F8C8D", size = 9, hjust = 0),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_text(face = "bold", size = 11))
+
+ggsave("visualizations/saudi_repeat_offender_rate.png", plot = p4, 
+       width = 10, height = 6, dpi = 300)
+
+# VISUALIZATION 5: Saudi vs UAE Comparison 
+comparison_viz <- saudi_uae_comparison %>%
+  pivot_longer(cols = c(`Saudi Arabia`, `United Arab Emirates`),
+               names_to = "country", values_to = "enforcements") %>%
+  mutate(type = factor(type, levels = c("Sexual Content", "Child Sexual Exploitation",
+                                         "Drugs", "Weapons", "Self-Harm & Suicide")))
+
+p5 <- ggplot(comparison_viz, aes(x = type, y = enforcements, fill = country)) +
+  geom_col(position = "dodge", alpha = 0.9) +
+  geom_text(aes(label = comma(enforcements)), 
+            position = position_dodge(width = 0.9),
+            vjust = -0.3, size = 3) +
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.15))) +
+  scale_fill_manual(values = c("Saudi Arabia" = "#2C3E50",
+                                "United Arab Emirates" = "#3498DB")) +
+  labs(title = "Regional Comparison: Saudi Arabia vs. UAE",
+       subtitle = "High-severity enforcements by category (H1 2024)",
+       x = NULL, y = "Total Enforcements", fill = "Country",
+       caption = "Raw totals reflect overall scale differences (~12x volume). Category distribution between Saudi Arabia and UAE is structurally similar when normalized."
+) +
+  theme_minimal(base_size = 12) +
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.subtitle = element_text(color = "#7F8C8D", size = 10),
+        plot.caption = element_text(color = "#E74C3C", size = 9, hjust = 0, face = "italic"),
+        axis.text.x = element_text(angle = 45, hjust = 1, face = "bold"),
+        legend.position = "top",
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank())
+
+ggsave("visualizations/saudi_uae_comparison.png", plot = p5, 
+       width = 10, height = 7, dpi = 300)
+
+# VISUALIZATION 6: Response Times
+response_viz <- gcc_response_times %>%
+  mutate(country = factor(country, levels = country[order(avg_response_time)]))
+
+p6 <- ggplot(response_viz, aes(x = country, y = avg_response_time)) +
+  geom_col(fill = "#27AE60", alpha = 0.8) +
+  geom_text(aes(label = sprintf("%.1f min", avg_response_time)), 
+            vjust = -0.5, size = 4, fontface = "bold") +
+  geom_hline(yintercept = mean(response_viz$avg_response_time), 
+             linetype = "dashed", color = "#E74C3C", linewidth = 0.8) +
+  annotate("text", x = 6, y = mean(response_viz$avg_response_time) + 0.5,
+           label = paste0("GCC Avg: ", sprintf("%.1f min", mean(response_viz$avg_response_time))),
+           color = "#E74C3C", size = 3.5, fontface = "bold") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(title = "Platform Response Times Across GCC Countries",
+       subtitle = "Average time to enforce high-severity violations (H1 2024)",
+       x = NULL, y = "Average Response Time (minutes)",
+       caption = "Response times range between 11–18 minutes across GCC countries. No country exhibits extreme deviation, suggesting relatively consistent enforcement handling despite volume differences."
+) +
+  theme_minimal(base_size = 12) +
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.subtitle = element_text(color = "#7F8C8D", size = 10),
+        plot.caption = element_text(color = "#7F8C8D", size = 9, hjust = 0),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.x = element_text(face = "bold"))
+
+ggsave("visualizations/gcc_response_times.png", plot = p6, 
+       width = 10, height = 6, dpi = 300)
+
+
+message("All visualizations saved to 'visualizations/' directory!")
+
+
+```
+
+6 PNG files in visualizations/ folder:
+
+gcc_total_enforcements.png - Shows Saudi has highest volume
+gcc_violation_rate.png - Shows Saudi has LOWER rate than Kuwait/Bahrain
+saudi_category_breakdown.png - Shows sexual content drives numbers
+saudi_repeat_offender_rate.png - Shows weapons has highest repeat pattern
+saudi_uae_comparison.png - Shows disproportionate drugs/weapons
+gcc_response_times.png - Shows consistent response across region
+
+
+
+## Appendix: All code used to make this document 
+
+```{r ref.label=knitr::all_labels(), echo = T, eval = F}
+```
+
+
+
