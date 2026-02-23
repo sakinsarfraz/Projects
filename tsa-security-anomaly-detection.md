@@ -1,4 +1,4 @@
-# TSA Security Anomaly Detection & Risk Assessment
+# TSA Screening Risk Analysis & Incident Rate Assessment
 
 ## Project Overview
 Analysis of 2.7 million TSA checkpoint records from 2022 to identify security anomalies, assess airport-level risk patterns, and detect temporal threat indicators. This project demonstrates data analytics skills applicable to security operations and threat intelligence.
@@ -18,7 +18,6 @@ Security Operations Center (SOC) analysts.
 
 **Note:** This represents foundational analytical work. Current research focus 
 is on platform safety intelligence and high-severity threat patterns 
-(see: [link to Snapchat project once live]).
 
 ## Dataset
 - **Source:** Transportation Security Administration (TSA) checkpoint data (2022)
@@ -39,7 +38,7 @@ is on platform safety intelligence and high-severity threat patterns
 **Finding:** 
 Orlando International (MCO) shows a confiscation rate of 7.3 per 100K travelers - significantly higher than comparable airports. Among airports with 10+ confiscations, MCO represents the highest relative risk.
 
-**Security Implication:** Elevated threat profile suggests need for enhanced screening protocols or targeted security measures.
+**Security Implication:** Elevated relative detection rate suggests further investigation may be warranted to understand contributing factors.
 
 ### 2. Temporal Threat Pattern Analysis
 **Question:** When are security risks most concentrated?
@@ -50,7 +49,7 @@ Orlando International (MCO) shows a confiscation rate of 7.3 per 100K travelers 
 - Correlated temporal patterns with operational needs
 
 **Findings:**
-- Newark (EWR): Highest risk at 16:00 (4 PM)
+- Newark (EWR): Highest average passenger throughput at at 16:00 (4 PM)
 - JFK: Highest risk at 17:00 (5 PM)  
 - LaGuardia (LGA): Highest risk at 09:00 (9 AM)
 
