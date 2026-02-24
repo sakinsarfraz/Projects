@@ -5,6 +5,8 @@ This project analyzes high-severity content enforcement patterns across Gulf Coo
 
 ## Portions of the exploratory data analysis were originally written for DATA 2100 (Introduction to Data Analytics) at the University of Pennsylvania and later expanded with a security analytics framework.
 
+## This README was partially assisted by AI for clarity, but all analysis and metrics were created independently.
+
 ## Why This Is Security Work
 
 **Content moderation IS security operations:**
