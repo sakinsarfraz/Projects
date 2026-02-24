@@ -9,6 +9,8 @@ to Data Analytics) at the University of Pennsylvania. The project has been
 reframed with a security analytics lens to demonstrate skills applicable to 
 threat detection and security operations.
 
+This README was partially assisted by AI for clarity, but all analysis, metrics, and visualizations were created independently.
+
 **Original Assignment:** Analyze TSA checkpoint and firearm confiscation data 
 to identify patterns and insights.
 
