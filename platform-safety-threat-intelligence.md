@@ -11,7 +11,8 @@
 
 
 ## Project Overview
-This project analyzes data from the Snap Inc. H1 2024 Transparency Report. The data is analyzed in two parts:
+This project analyzes data from the Snap Inc. H1 2024 Transparency Report and all findings are reproducible from the source. Full analysis code available in repository. The data is analyzed in two parts:
+
 
 - 1: Data Cleaning and Exploratory Analysis
 **(This portion of the exploratory data analysis was originally a project of DATA 2100 (Introduction to Data Analytics) at the University of Pennsylvania and later expanded with a security analytics framework)**
@@ -24,12 +25,33 @@ Dataset:
 - **Metrics:** Total enforcements, unique accounts impacted, median response times
 
 
-This project demonstrates:
-- Threat intelligence analysis skills
-- Geographic threat distribution
-- Category-based risk assessment
-- Content moderation effectiveness metrics 
-- Repeat offender detection
+
+## Skills Demonstrated In This Project
+
+### Threat Intelligence
+- Geographic threat distribution analysis
+- Threat categorization and prioritization
+- Pattern recognition across threat types
+- Enforcement effectiveness assessment
+- Repeat offender detection methodology
+
+### Data Analytics
+- Complex data reshaping (long to wide format)
+- Multi-condition filtering and subsetting
+- Geographic data analysis
+- Statistical analysis (percentages, ratios, distributions)
+- Missing data handling
+
+### Technical Skills
+- **R** (tidyr, dplyr, ggplot2)
+- Data cleaning and validation
+- Categorical data analysis
+- Data visualization
+
+
+
+
+
 
 
 
@@ -42,7 +64,38 @@ This project demonstrates:
 - Response time metrics = Incident response performance
 - Enforcement effectiveness = Security control effectiveness
 
-ULTIMATELY protecting users FIRST and platforms. 
+ULTIMATELY protecting users FIRST and then platforms. 
+
+## Blue Team Relevance
+
+Blue teams protect an organizations critical assets, infrastructure, and data from threats.
+
+**1. Threat Pattern Detection**
+Identifying where threats originate and concentrate (like analyzing attack sources and geographic distribution in cybersecurity)
+
+**2. Threat Categorization**
+Classifying violations by type and severity (like categorizing security incidents: malware, phishing, DDoS, etc.)
+
+**3. Response Time Analysis**
+Measuring how quickly threats are addressed (incident response performance metrics)
+
+**4. Geographic Intelligence**
+Understanding regional threat patterns (like analyzing botnet locations or attack origins by country)
+
+**5. Effectiveness Metrics**
+Calculating enforcements per account (like measuring SOC alert-to-incident ratios or false positive rates)
+
+**6. Repeat Offender Detection**
+Identifying persistent bad actors (like tracking repeat attackers or insider threats)
+
+### Real-World Context
+
+
+Trust & Safety job postings specifically request skills in:
+- Abuse pattern analysis ✓
+- Data-driven investigation ✓
+- Threat categorization ✓
+- Geographic distribution analysis ✓
 
 
 
@@ -53,7 +106,7 @@ ULTIMATELY protecting users FIRST and platforms.
 This dataset required extensive cleaning before analysis was possible:
 
 **Challenges faced:**
-- Data arrived in long format (22,988 rows × 7 columns)
+- Data was in long format (22,988 rows × 7 columns)
 - Values stored as character strings instead of numeric
 - Multi-level categorical structure (section → category → sub_category)
 - Needed to reshape for country-violation analysis
@@ -198,147 +251,31 @@ ggplot(eu_weapons, aes(x = median_turnaround_time_minutes,
 Response time metrics reveal operational effectiveness and help identify bottlenecks in content moderation workflows. Faster response times for high-severity violations (like child exploitation) vs. lower-severity violations (like spam) would indicate appropriate prioritization.
 
 
-
-
-
-
-### Geographic Analysis
-- Compiled list of 27 EU countries for regional analysis
-- Cross-referenced country lists with violation types
-- Created focused visualizations for regional threat patterns
-- Handled country name variations and missing data
-
-## Skills Demonstrated
-
-### Threat Intelligence
-- Geographic threat distribution analysis
-- Threat categorization and prioritization
-- Pattern recognition across threat types
-- Enforcement effectiveness assessment
-- Repeat offender detection methodology
-
-### Data Analytics
-- Complex data reshaping (long to wide format)
-- Multi-condition filtering and subsetting
-- Calculated metrics creation
-- Geographic data analysis
-- Statistical analysis (percentages, ratios, distributions)
-- Missing data handling
-
-### Technical Skills
-- **R** (tidyr, dplyr, ggplot2)
-- Data cleaning and validation
-- Categorical data analysis
-- Data visualization
-- Metric development
-
-## Blue Team Relevance
-
-### Trust & Safety = Security Operations
-
-This analysis demonstrates the same skills that Trust & Safety teams (security roles at tech companies) use daily:
-
-**1. Threat Pattern Detection**
-Identifying where threats originate and concentrate (like analyzing attack sources and geographic distribution in cybersecurity)
-
-**2. Threat Categorization**
-Classifying violations by type and severity (like categorizing security incidents: malware, phishing, DDoS, etc.)
-
-**3. Response Time Analysis**
-Measuring how quickly threats are addressed (incident response performance metrics)
-
-**4. Geographic Intelligence**
-Understanding regional threat patterns (like analyzing botnet locations or attack origins by country)
-
-**5. Effectiveness Metrics**
-Calculating enforcements per account (like measuring SOC alert-to-incident ratios or false positive rates)
-
-**6. Repeat Offender Detection**
-Identifying persistent bad actors (like tracking repeat attackers or insider threats)
-
-### Real-World Context
-
-- **Meta** employs 40,000+ content moderators (security/safety professionals)
-- **Google's** Trust & Safety team works alongside traditional cybersecurity teams
-- **TikTok, Snap, Reddit** all have dedicated safety operations centers
-- These roles require exactly this type of threat pattern analysis and geographic intelligence
-
-Trust & Safety job postings specifically request skills in:
-- Abuse pattern analysis ✓
-- Data-driven investigation ✓
-- Threat categorization ✓
-- Geographic distribution analysis ✓
-- Metrics development ✓
-
-## Personal Context & Domain Knowledge
-
-Understanding platform dynamics informed this analysis. Snapchat's primary demographic (ages 13-24) and common use cases create specific threat profiles that differ from other social platforms.
-
-**Domain knowledge applied:**
-- Why certain violation categories appear more frequently on ephemeral messaging platforms
-- How platform features (disappearing messages, location sharing) create unique safety challenges
-- Platform-specific risks vs. general social media threats
-
-**Security lesson:** Domain expertise significantly improves threat analysis quality. Understanding the environment you're protecting is as important as the analytical techniques themselves.
-
 ## Key Takeaways
 
 ### Analytical Insights
-- **Geographic concentration:** 38% of global enforcements from one country suggests uneven threat distribution or detection capabilities
 - **Repeat offenders exist:** High enforcement-per-account ratios (14:1) indicate persistent bad actors requiring different mitigation strategies
 - **Threat category volumes:** 234K+ weapons violations globally shows scale of platform safety challenges
 - **Pattern over volume matters:** Most interesting insights came from relative patterns (ratios, percentages) rather than absolute numbers
 
 ### Technical Lessons
-- **Data cleaning is unglamorous but essential:** Spent more time reshaping data than analyzing it - this reflects real-world security work
+- **Data cleaning is unglamorous but essential:** I spent more time reshaping data than analyzing it. This reflects real-world security work
 - **Context drives interpretation:** Understanding Snapchat's user base and features improved pattern recognition
 - **Metrics tell stories:** Simple calculated metrics (enforcements per account) revealed patterns invisible in raw data
 - **Visualization clarifies complexity:** Geographic and categorical visualizations made 22K+ records understandable
 
-## Future Enhancements
-
-Potential extensions of this analysis:
-
-**Time-Series Analysis:**
-- Compare multiple transparency reports over time
-- Identify trending threat categories
-- Measure enforcement effectiveness changes
-- Detect emerging threat patterns
-
-**Cross-Platform Comparison:**
-- Benchmark Snapchat vs. Instagram vs. TikTok
-- Identify platform-specific threat profiles
-- Compare response time effectiveness
-- Analyze category distribution differences
-
-**Predictive Modeling:**
-- Build models to predict high-risk countries/categories
-- Forecast enforcement resource needs
-- Identify early warning indicators for emerging threats
-
-**Deep-Dive Regional Analysis (BELOW):**
-- Investigate why certain countries show unusual patterns
-- Correlate with external factors (regulations, events, demographics)
-- Develop region-specific safety strategies
-
-## Code & Reproducibility
-
-Full analysis code available in repository. All findings are reproducible from the source Snapchat Transparency Report data (H1 2024).
-
-**Analysis workflow:**
-1. Data import and exploration
-2. Data cleaning and reshaping
-3. Metric calculation
-4. Geographic and categorical analysis
-5. Visualization creation
-
----
 
 
-## Deep-Dive Regional Analysis:
+# Part 2: Exploratory Data Analysis on Gulf Cooperation Council (GCC) Countries and Threat Pattern Analysis
 
+## Personal Context 
 
-## Focus and Objectives On Criminal-level Violation Categories 
+Personal curiosity regarding social media applications and their threat reports was the main reason for this analysis. Snapchat is very popular amongst Gen Z. The primary demographic is around ages 13-24. Knowing this, I wanted to know how efficiently Snapchat deals with violations and potential criminal content. Is this platform safe for the younger generation?
+
+To narrow these questions down, my focus went on the GCC, primarily because of personal cultural familiarity and similary regulatory frameworks amongst countries in the GCC. They have common cultural and legal context, and high social media penetration among youth (primary user demographic).
+
+After narrowing down to the GCC, I chose to analyze data from specific categories which could possibly lead to heavy legal implications.
+
 These categories are:
 - Child Sexual Exploitation (CSE)
 - Weapons
@@ -346,27 +283,7 @@ These categories are:
 - Self-Harm & Suicide
 - Sexual Content
 
-We evaluate:
-- Geographic threat distribution
-- Enforcement concentration vs. scale effects
-- Repeat offender patterns
-- Category-specific risk profiles
-- Response time consistency
-
-
-
-
-
-
-**Background:**
-This project emerged from interest in the intersection of platform safety, 
-criminal threat intelligence, and regional security dynamics. As a data 
-analytics researcher based in the Gulf region, I wanted to understand how 
-high-severity platform violations manifest in this specific geographic and 
-cultural context.
-
-**Why high-severity categories?**
-High-severity categories, some of which I chose may involve criminal conduct depending on jurisdiction.
+The categories listed above are High-severity. Some of these may involve criminal conduct depending on jurisdiction.
 Child exploitation, weapons trafficking, drug distribution, and terrorism 
 represent the most serious threats on digital platforms. Unlike policy 
 violations, these categories:
@@ -375,25 +292,16 @@ violations, these categories:
 - Cause real-world physical harm
 - Are priority areas for trust & safety operations
 
-**Why the GCC specifically?**
-The Gulf region offers a unique analytical lens:
-- Shared regulatory frameworks
-- Common cultural and legal context
-- High social media penetration among youth (primary user demographic)
-- Coordinated law enforcement structures
 
-**Regional expertise:**
-Being based in the region provides contextual understanding of factors that 
-influence both violation patterns and platform response strategies—insights 
-that aggregate global analysis might miss.
+Overall, I evaluated:
+- Geographic threat distribution
+- Repeat offender patterns
+- Category-specific risk profiles
+- Response time consistency
 
-**Career relevance:**
-This work demonstrates skills directly applicable to Trust & Safety analyst, 
-Threat Intelligence analyst, and SOC analyst roles requiring:
-- Criminal threat pattern recognition
-- Geographic risk assessment
-- Severity-based prioritization
-- Cross-border threat analysis
+
+
+
 
 
 
@@ -464,7 +372,7 @@ Sexual Content	          | 259713 (75%) | 21450 (73%)
 Weapons	                  | 4214	(1.22%)| 497	(1.70%)
 
 **Interpretation:**
-Similar patterns suggest regional norms; differences suggest market-specific factors. Raw enforcement totals in Saudi Arabia are approximately a magnitude higher than in the UAE across most violation categories, reflecting overall scale differences in enforcement volume. Overall, violation distribution patterns between Saudi Arabia and the UAE are structurally similar, suggesting comparable enforcement category composition rather than disproportionate concentration in any single category.
+Similar patterns suggest regional norms whereas differences suggest market-specific factors. Raw enforcement totals in Saudi Arabia are approximately a magnitude higher than in the UAE across most violation categories. Overall, violation distribution patterns between Saudi Arabia and the UAE are structurally similar, suggesting comparable enforcement category composition rather than disproportionate concentration in any single category.
 
 
 #### 4. Platform Response Effectiveness
