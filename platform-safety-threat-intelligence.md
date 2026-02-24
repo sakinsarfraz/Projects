@@ -1,13 +1,39 @@
 # Platform Safety Intelligence: Geographic Threat Pattern Analysis
 
+# Table of Contents:
+
+1. Project Overview
+2. How This Project Relates To Security
+3. Why Threat Analysis Matters
+4. Part 1: Data Cleaning and Exploratory Analysis
+5. Part 2: Exploratory Data Analysis on Gulf Cooperation Council (GCC) Countries and Threat Pattern Analysis
+
+
+
 ## Project Overview
-This project analyzes high-severity content enforcement patterns across Gulf Cooperation Council (GCC) countries using data from the Snap Inc. H1 2024 Transparency Report. It demonstrates threat intelligence analysis skills including geographic threat distribution, category-based risk assessment, content moderation effectiveness metrics, and repeat offender detection.
+This project analyzes data from the Snap Inc. H1 2024 Transparency Report. The data is analyzed in two parts:
 
-## Portions of the exploratory data analysis were originally written for DATA 2100 (Introduction to Data Analytics) at the University of Pennsylvania and later expanded with a security analytics framework.
+- 1: Data Cleaning and Exploratory Analysis
+**(This portion of the exploratory data analysis was originally a project of DATA 2100 (Introduction to Data Analytics) at the University of Pennsylvania and later expanded with a security analytics framework)**
+- 2: Exploratory Data Analysis on Gulf Cooperation Council (GCC) Countries and Threat Pattern Analysis
 
-## This README was partially assisted by AI for clarity, but all analysis and metrics were created independently.
+Dataset:
+- **Source:** Snapchat Transparency Report (H1 2024)
+- **Scale:** 22,988 enforcement records
+- **Coverage:** 200+ countries, 15+ violation categories
+- **Metrics:** Total enforcements, unique accounts impacted, median response times
 
-## Why This Is Security Work
+
+This project demonstrates:
+- Threat intelligence analysis skills
+- Geographic threat distribution
+- Category-based risk assessment
+- Content moderation effectiveness metrics 
+- Repeat offender detection
+
+
+
+## How This Project Relates To Security
 
 **Content moderation IS security operations:**
 - Detecting harmful content = Detecting malicious activity
@@ -16,32 +42,50 @@ This project analyzes high-severity content enforcement patterns across Gulf Coo
 - Response time metrics = Incident response performance
 - Enforcement effectiveness = Security control effectiveness
 
-Major tech companies employ Trust & Safety teams (security professionals) to handle similar types of analysis. This project demonstrates applied Trust & Safety intelligence analysis, equivalent to blue-team security operations in a platform environment. These teams work to protect users and platforms. 
-
-## Focus and Objectives On Criminal-level Violation Categories 
-These categories are:
-- Child Sexual Exploitation (CSE)
-- Weapons
-- Drugs
-- Self-Harm & Suicide
-- Sexual Content
-
-We evaluate:
-- Geographic threat distribution
-- Enforcement concentration vs. scale effects
-- Repeat offender patterns
-- Category-specific risk profiles
-- Response time consistency
+ULTIMATELY protecting users FIRST and platforms. 
 
 
 
-## Dataset
-- **Source:** Snapchat Transparency Report (H1 2024)
-- **Scale:** 22,988 enforcement records
-- **Coverage:** 200+ countries, 15+ violation categories
-- **Metrics:** Total enforcements, unique accounts impacted, median response times
 
-## Key Investigations
+## Part 1: Data Cleaning and Exploratory Analysis
+
+### Data Tidying (The Hard Part)
+This dataset required extensive cleaning before analysis was possible:
+
+**Challenges faced:**
+- Data arrived in long format (22,988 rows × 7 columns)
+- Values stored as character strings instead of numeric
+- Multi-level categorical structure (section → category → sub_category)
+- Needed to reshape for country-violation analysis
+- Missing values requiring NA handling
+
+**Data transformation process:**
+```r
+# Convert character values to numeric
+snapchat$value <- as.numeric(snapchat$value)
+
+# Filter to relevant enforcement data
+tands <- snapchat[snapchat$section == "Overview of Our T&S Enforcements" & 
+                  snapchat$category == "Country", ]
+
+# Remove redundant columns
+tands$section <- NULL
+tands$category <- NULL
+tands$period <- NULL
+
+# Rename for clarity
+names(tands)[names(tands) == "sub_category_1"] <- "country"
+names(tands)[names(tands) == "sub_category_2"] <- "type"
+
+# Reshape from long to wide format
+tands <- spread(tands, key = metric, value = value)
+```
+
+**Result:** Transformed messy transparency report data into analysis-ready format where each row represents a unique country-violation type pairing with all metrics accessible.
+
+**Lesson learned:** Real-world security data is rarely clean. Data wrangling skills are as important as analytical skills.
+
+
 
 ### 1. Repeat Offender Detection
 **Question:** Which enforcement patterns suggest repeat offenders vs. distributed threats?
@@ -153,43 +197,10 @@ ggplot(eu_weapons, aes(x = median_turnaround_time_minutes,
 **Security Implication:**
 Response time metrics reveal operational effectiveness and help identify bottlenecks in content moderation workflows. Faster response times for high-severity violations (like child exploitation) vs. lower-severity violations (like spam) would indicate appropriate prioritization.
 
-## Technical Challenges
 
-### Data Tidying (The Hard Part)
-This dataset required extensive cleaning before analysis was possible:
 
-**Challenges faced:**
-- Data arrived in long format (22,988 rows × 7 columns)
-- Values stored as character strings instead of numeric
-- Multi-level categorical structure (section → category → sub_category)
-- Needed to reshape for country-violation analysis
-- Missing values requiring NA handling
 
-**Data transformation process:**
-```r
-# Convert character values to numeric
-snapchat$value <- as.numeric(snapchat$value)
 
-# Filter to relevant enforcement data
-tands <- snapchat[snapchat$section == "Overview of Our T&S Enforcements" & 
-                  snapchat$category == "Country", ]
-
-# Remove redundant columns
-tands$section <- NULL
-tands$category <- NULL
-tands$period <- NULL
-
-# Rename for clarity
-names(tands)[names(tands) == "sub_category_1"] <- "country"
-names(tands)[names(tands) == "sub_category_2"] <- "type"
-
-# Reshape from long to wide format
-tands <- spread(tands, key = metric, value = value)
-```
-
-**Result:** Transformed messy transparency report data into analysis-ready format where each row represents a unique country-violation type pairing with all metrics accessible.
-
-**Lesson learned:** Real-world security data is rarely clean. Data wrangling skills are as important as analytical skills.
 
 ### Geographic Analysis
 - Compiled list of 27 EU countries for regional analysis
@@ -325,6 +336,27 @@ Full analysis code available in repository. All findings are reproducible from t
 
 
 ## Deep-Dive Regional Analysis:
+
+
+## Focus and Objectives On Criminal-level Violation Categories 
+These categories are:
+- Child Sexual Exploitation (CSE)
+- Weapons
+- Drugs
+- Self-Harm & Suicide
+- Sexual Content
+
+We evaluate:
+- Geographic threat distribution
+- Enforcement concentration vs. scale effects
+- Repeat offender patterns
+- Category-specific risk profiles
+- Response time consistency
+
+
+
+
+
 
 **Background:**
 This project emerged from interest in the intersection of platform safety, 
