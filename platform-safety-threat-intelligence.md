@@ -259,8 +259,7 @@ Response time metrics reveal operational effectiveness and help identify bottlen
 - **Pattern over volume matters:** Most interesting insights came from relative patterns (ratios, percentages) rather than absolute numbers
 
 ### Technical Lessons
-- **Data cleaning is unglamorous but essential:** I spent more time reshaping data than analyzing it. This reflects real-world security work
-- **Context drives interpretation:** Understanding Snapchat's user base and features improved pattern recognition
+- **Data cleaning is essential:** Data cleaning reflects real-world security work as most real world data is raw
 - **Metrics tell stories:** Simple calculated metrics (enforcements per account) revealed patterns invisible in raw data
 - **Visualization clarifies complexity:** Geographic and categorical visualizations made 22K+ records understandable
 
