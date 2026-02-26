@@ -56,13 +56,14 @@ Orlando International (MCO) shows a confiscation rate of 7.3 per 100K travelers 
 **Finding:**
 At Philadelphia International, Checkpoint D/E processes 3x more passengers than other checkpoints, creating a concentrated security exposure point.
 
-![Daily Checkpoint Traffic](visualizations/checkpoint_traffic.png)
 
 ### 4. Threat Volume Analysis
 **Question:** Which airports detected the most security threats in 2022?
 
 **Finding:**
 Hartsfield-Jackson Atlanta (ATL) confiscated 448 firearms which was the highest in the nation.
+
+![Daily Checkpoint Traffic](visualizations/checkpoint_traffic.png)
 
 
 ## Technical Implementation
