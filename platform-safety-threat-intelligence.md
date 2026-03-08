@@ -66,27 +66,6 @@ Dataset:
 
 ULTIMATELY protecting users FIRST and then platforms. 
 
-## Blue Team Relevance
-
-Blue teams protect an organizations critical assets, infrastructure, and data from threats.
-
-**1. Threat Pattern Detection**
-Identifying where threats originate and concentrate (like analyzing attack sources and geographic distribution in cybersecurity)
-
-**2. Threat Categorization**
-Classifying violations by type and severity (like categorizing security incidents: malware, phishing, DDoS, etc.)
-
-**3. Response Time Analysis**
-Measuring how quickly threats are addressed (incident response performance metrics)
-
-**4. Geographic Intelligence**
-Understanding regional threat patterns (like analyzing botnet locations or attack origins by country)
-
-**5. Effectiveness Metrics**
-Calculating enforcements per account (like measuring SOC alert-to-incident ratios or false positive rates)
-
-**6. Repeat Offender Detection**
-Identifying persistent bad actors (like tracking repeat attackers or insider threats)
 
 ### Real-World Context
 
