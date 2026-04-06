@@ -67,17 +67,6 @@ Dataset:
 ULTIMATELY protecting users FIRST and then platforms. 
 
 
-### Real-World Context
-
-
-Trust & Safety job postings specifically request skills in:
-- Abuse pattern analysis ✓
-- Data-driven investigation ✓
-- Threat categorization ✓
-- Geographic distribution analysis ✓
-
-
-
 
 ## Part 1: Data Cleaning and Exploratory Analysis
 
