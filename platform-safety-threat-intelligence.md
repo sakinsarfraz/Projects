@@ -385,22 +385,16 @@ The response times are similar across all GCC countries with the average respons
 
 
 
-
-
-### Key Finding 1: Saudi has highest VOLUME but NOT highest RATE
-### Conclusion: Population effect, not behavioral difference
-
-### Key Finding 2: Sexual Content drives numbers (75%)
-### Conclusion: This is the primary enforcement category
-
-### Key Finding 3: Weapons show highest repeat offender rate (1.89)
-### Conclusion: Concentrated threat requiring targeted removal
-
-### Key Finding 4: Drugs/Weapons disproportionate in Saudi vs UAE
-### Conclusion: Requires further investigation - not explained by population alone
-
-### Key Finding 5: Response times consistent across GCC (11-18 min)
-### Conclusion: Platform treats region equitably
+##Enforcement Volume vs. Rate
+###Higher enforcement volume in Saudi Arabia may reflect the country’s larger population rather than underlying behavioral differences among users. This suggests that absolute numbers alone may not indicate higher risk without considering user base size.
+##Dominant Violation Categories
+###Sexual content accounts for the majority of high-severity enforcement cases across GCC countries, representing approximately 75% of total violations in Saudi Arabia. This indicates that platform safety efforts are structurally driven by specific categories rather than evenly distributed across all threats.
+##Repeat Offender Patterns
+###Higher enforcement-per-account ratios, particularly for weapons violations in Kuwait, suggest concentrated patterns of repeated offending. These cases may benefit from targeted monitoring or intervention strategies.
+##Regional Comparisons
+###Violation distribution patterns are broadly similar across GCC countries, although raw totals differ. This implies that observed differences may be influenced by factors such as population size, user reporting behavior, or platform prioritization, rather than fundamental behavioral differences.
+##Response Time Consistency
+###Median response times for high-severity violations range from approximately 11–18 minutes across the GCC. This relative consistency suggests that enforcement actions are applied fairly across countries, though further investigation could identify opportunities for operational improvement.
 
 **Author:** Sakina Sarfraz   
 
