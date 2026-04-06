@@ -387,22 +387,20 @@ The response times are similar across all GCC countries with the average respons
 
 
 
-# ===== INTERPRETATION SUMMARY =====
+### Key Finding 1: Saudi has highest VOLUME but NOT highest RATE
+### Conclusion: Population effect, not behavioral difference
 
-# Key Finding 1: Saudi has highest VOLUME but NOT highest RATE
-# Conclusion: Population effect, not behavioral difference
+### Key Finding 2: Sexual Content drives numbers (75%)
+### Conclusion: This is the primary enforcement category
 
-# Key Finding 2: Sexual Content drives numbers (75%)
-# Conclusion: This is the primary enforcement category
+### Key Finding 3: Weapons show highest repeat offender rate (1.89)
+### Conclusion: Concentrated threat requiring targeted removal
 
-# Key Finding 3: Weapons show highest repeat offender rate (1.89)
-# Conclusion: Concentrated threat requiring targeted removal
+### Key Finding 4: Drugs/Weapons disproportionate in Saudi vs UAE
+### Conclusion: Requires further investigation - not explained by population alone
 
-# Key Finding 4: Drugs/Weapons disproportionate in Saudi vs UAE
-# Conclusion: Requires further investigation - not explained by population alone
-
-# Key Finding 5: Response times consistent across GCC (11-18 min)
-# Conclusion: Platform treats region equitably
+### Key Finding 5: Response times consistent across GCC (11-18 min)
+### Conclusion: Platform treats region equitably
 
 **Author:** Sakina Sarfraz   
 
