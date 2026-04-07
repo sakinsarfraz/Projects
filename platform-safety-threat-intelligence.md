@@ -11,7 +11,7 @@
 
 
 ## Project Overview
-This project analyzes data from the Snap Inc. H1 2024 Transparency Report and all findings are reproducible from the source. Full analysis code available in repository. The data is analyzed in two parts:
+This project analyzes data from the Snap Inc. H1 2024 Transparency Report which is publicly available online. Full analysis code available in repository. The data is analyzed in two parts:
 
 
 - 1: Data Cleaning and Exploratory Analysis
@@ -37,14 +37,13 @@ Dataset:
 
 ### Data Analytics
 - Complex data reshaping (long to wide format)
-- Multi-condition filtering and subsetting
+- Filtering and subsetting
 - Geographic data analysis
 - Statistical analysis (percentages, ratios, distributions)
-- Missing data handling
 
 ### Technical Skills
 - **R** (tidyr, dplyr, ggplot2)
-- Data cleaning and validation
+- Data cleaning 
 - Categorical data analysis
 - Data visualization
 
