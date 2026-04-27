@@ -86,6 +86,5 @@ Hartsfield-Jackson Atlanta (ATL) confiscated 448 firearms which was the highest 
 
 ---
 
-**Author:** Sakina Sarfraz 
-**Contact:** sarfraz1@sas.upenn.edu  
+**Author:** Sakina Sarfraz   
 **Institution:** University of Pennsylvania, BASc Mathematics & Data Analytics
