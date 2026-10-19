@@ -1,12 +1,11 @@
-# Platform Safety Intelligence: Geographic Threat Pattern Analysis
+# Platform Safety: Geographic Threat Pattern Analysis
 
 # Table of Contents:
 
 1. Project Overview
-2. How This Project Relates To Security
-3. Why Threat Analysis Matters
-4. Part 1: Data Cleaning and Exploratory Analysis
-5. Part 2: Exploratory Data Analysis on Gulf Cooperation Council (GCC) Countries and Threat Pattern Analysis
+2. Why Threat Analysis Matters
+3. Part 1: Data Cleaning and Exploratory Analysis
+4. Part 2: Exploratory Threat Pattern Data Analysis on Gulf Cooperation Council (GCC) Countries 
 
 
 
@@ -16,7 +15,7 @@ This project analyzes data from the Snap Inc. H1 2024 Transparency Report which 
 
 - 1: Data Cleaning and Exploratory Analysis
 **(This portion of the exploratory data analysis was originally a project of DATA 2100 (Introduction to Data Analytics) at the University of Pennsylvania and later expanded with a security analytics framework)**
-- 2: Exploratory Data Analysis on Gulf Cooperation Council (GCC) Countries and Threat Pattern Analysis
+- 2: Exploratory Threat Pattern Data Analysis on Gulf Cooperation Council (GCC) Countries 
 
 Dataset:
 - **Source:** Snapchat Transparency Report (H1 2024)
@@ -36,7 +35,7 @@ Dataset:
 - Repeat offender detection methodology
 
 ### Data Analytics
-- Complex data reshaping (long to wide format)
+- Data reshaping (long to wide format)
 - Filtering and subsetting
 - Geographic data analysis
 - Statistical analysis (percentages, ratios, distributions)
@@ -54,14 +53,14 @@ Dataset:
 
 
 
-## How This Project Relates To Security
 
-**Content moderation IS security operations:**
-- Detecting harmful content = Detecting malicious activity
-- Categorizing violations = Categorizing security incidents  
-- Geographic threat patterns = Understanding attack origins
-- Response time metrics = Incident response performance
-- Enforcement effectiveness = Security control effectiveness
+
+Content Moderation:
+- Detecting harmful content 
+- Categorizing violations 
+- Geographic threat patterns 
+- Response time metrics 
+- Enforcement effectiveness 
 
 ULTIMATELY protecting users FIRST and then platforms. 
 
