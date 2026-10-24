@@ -14,7 +14,7 @@ This project analyzes data from the Snap Inc. H1 2024 Transparency Report which 
 
 
 - 1: Data Cleaning and Exploratory Analysis
-**(This portion of the exploratory data analysis was originally a project of DATA 2100 (Introduction to Data Analytics) at the University of Pennsylvania and later expanded with a security analytics framework)**
+**(This portion of the exploratory data analysis was originally a project of DATA 2100 (Introduction to Data Analytics) at the University of Pennsylvania and later expanded with security analysis)**
 - 2: Exploratory Threat Pattern Data Analysis on Gulf Cooperation Council (GCC) Countries 
 
 Dataset:
@@ -27,7 +27,7 @@ Dataset:
 
 ## Skills Demonstrated In This Project
 
-### Threat Intelligence
+### Threat Analysis
 - Geographic threat distribution analysis
 - Threat categorization and prioritization
 - Pattern recognition across threat types
@@ -62,7 +62,7 @@ Content Moderation:
 - Response time metrics 
 - Enforcement effectiveness 
 
-ULTIMATELY protecting users FIRST and then platforms. 
+ULTIMATELY protecting users FIRST
 
 
 
@@ -102,7 +102,7 @@ tands <- spread(tands, key = metric, value = value)
 
 **Result:** Transformed messy transparency report data into analysis-ready format where each row represents a unique country-violation type pairing with all metrics accessible.
 
-**Lesson learned:** Real-world security data is rarely clean. Data wrangling skills are as important as analytical skills.
+**Lesson learned:** Real-world security data is rarely clean. 
 
 
 
