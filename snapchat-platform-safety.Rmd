@@ -286,7 +286,7 @@ names(gcc_filtered)
 ```
 The categories were narrowed down to the ones which could possibly subject to harder legal implications due to their severity such as "Self-Harm and Suicide"
 
-After narrowing down the categories, I chose to analyze the GCC countries because of personal geographical proximity, population cultural knowledge, and wanting to understand the extent of how sensitive content is handled in the GCC. For example, the GCC is known for going by Sharia law and teachings. This elicits questions such as "Do the laws and cultural values of the place have implications to the risk profile of the country?" etc.
+After narrowing down the categories, I chose to analyze the GCC countries because of personal geographical proximity and wanting to understand the extent of how sensitive content is handled in the GCC. This elicits questions such as "Do the laws and cultural values of the place have implications to the risk profile of the country?" etc.
 
 ## 3. 
 
