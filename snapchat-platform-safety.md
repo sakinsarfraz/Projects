@@ -1,4 +1,4 @@
-# Platform Safety: Geographic Threat Pattern Analysis
+# Snapchat Platform Safety Analysis
 
 # Table of Contents:
 
