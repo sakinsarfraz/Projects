@@ -27,40 +27,28 @@ Dataset:
 
 ## Skills Demonstrated In This Project
 
-### Threat Analysis
-- Geographic threat distribution analysis
-- Threat categorization and prioritization
-- Pattern recognition across threat types
-- Enforcement effectiveness assessment
-- Repeat offender detection methodology
+### Threat Analysis and Security Research
+- Geographic analysis of enforcement activity across GCC countries
+- Categorization and comparison of potentially harmful content
+- Identification of enforcement concentration patterns and potential risk indicators
+- Comparative analysis of enforcement turnaround times
+- Development of quantitative metrics to support further investigation of potential repeat violations
+- Interpretation of security-related findings while accounting for data limitations
 
 ### Data Analytics
-- Data reshaping (long to wide format)
-- Filtering and subsetting
-- Geographic data analysis
-- Statistical analysis (percentages, ratios, distributions)
+- Data transformation and reshaping (long-to-wide format)
+- Data filtering, subsetting, grouping, and aggregation
+- Geographic and cross-country comparative analysis
+- Exploratory data analysis (EDA)
+- Statistical summaries, percentages, ratios, and distributions
+- Metric development and interpretation
 
 ### Technical Skills
-- **R** (tidyr, dplyr, ggplot2)
-- Data cleaning 
-- Categorical data analysis
-- Data visualization
-
-
-
-
-
-
-
-
-
-
-Content Moderation:
-- Detecting harmful content 
-- Categorizing violations 
-- Geographic threat patterns 
-- Response time metrics 
-- Enforcement effectiveness 
+- R programming: dplyr, tidyr, ggplot2
+- Data cleaning and validation
+- Data manipulation and categorical analysis
+- Data visualization and exploratory reporting
+- Analytical interpretation and communication of findings
 
 ULTIMATELY protecting users FIRST
 
