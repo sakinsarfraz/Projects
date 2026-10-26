@@ -31,15 +31,12 @@ library(scales)
 
 This analysis was originally completed as a final exam project for DATA 2100 
 (Introduction to Data Analytics) at the University of Pennsylvania. The project 
-has been adapted and expanded with a security analytics framework to demonstrate 
-skills applicable to threat detection and security operations.
+has been adapted and expanded with a security analytics framework.
 
 **Original Assignment:** Analyze TSA checkpoint and firearm confiscation data 
 to identify patterns and insights.
 
-**Security-Focused Extension:** Reframed analysis to focus on anomaly detection, 
-risk assessment, and threat pattern identification - core skills for Security 
-Operations Center (SOC) analysts.
+
 
 
 
